@@ -1,1 +1,2730 @@
-# Aran1ir.github.io
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<link rel="icon" href="https://i.ibb.co/9HzHSyrb/free-icon-naruto-590726.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yama NARUTO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --konoha-green: #2d5a27;
+            --konoha-dark: #1a3317;
+            --sharingan-red: #8B0000;
+            --chakra-orange: #ff6b35;
+            --chakra-yellow: #ffd700;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 25, 0.85);
+            --glow-orange: rgba(255, 107, 53, 0.4);
+            --glow-blue: rgba(0, 150, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background: var(--dark-bg);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 50% 50%, rgba(255, 60, 0, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 60, 0, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 90%, rgba(139, 0, 0, 0.12) 0%, transparent 50%),
+                linear-gradient(180deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+            animation: kuramaPulse 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes kuramaPulse {
+            0% { 
+                filter: brightness(0.9) saturate(0.8);
+                transform: scale(1);
+            }
+            50% {
+                filter: brightness(1.1) saturate(1.2);
+                transform: scale(1.02);
+            }
+            100% { 
+                filter: brightness(0.95) saturate(1);
+                transform: scale(1);
+            }
+        }
+
+        .bg-layer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(255, 107, 53, 0.08) 0%, transparent 30%),
+                radial-gradient(circle at 70% 60%, rgba(255, 60, 0, 0.06) 0%, transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 40%);
+            animation: chakraFlicker 4s ease-in-out infinite;
+        }
+
+        @keyframes chakraFlicker {
+            0%, 100% { opacity: 0.6; }
+            25% { opacity: 1; }
+            50% { opacity: 0.8; }
+            75% { opacity: 0.9; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 107, 53, 0.7);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+            box-shadow: 0 0 8px rgba(255, 60, 0, 0.9);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            position: relative;
+        }
+
+        .logo-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .logo-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: transparent;
+            background: linear-gradient(135deg, var(--chakra-orange), var(--chakra-yellow), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 107, 53, 0.3);
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-text::after {
+            content: 'うずまき';
+            position: absolute;
+            top: -15px;
+            right: -50px;
+            font-size: 1.2rem;
+            color: var(--chakra-orange);
+            opacity: 0.6;
+            letter-spacing: 4px;
+        }
+
+        .header-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 60, 0, 0.2) 0%, transparent 70%);
+            filter: blur(40px);
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: var(--chakra-orange);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--chakra-orange);
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .actions-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .add-arc-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 200px;
+            padding: 18px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 215, 0, 0.05));
+            border: 2px dashed rgba(255, 107, 53, 0.4);
+            border-radius: 16px;
+            color: var(--chakra-orange);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .add-arc-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 215, 0, 0.1));
+            border-color: var(--chakra-orange);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .import-export-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .import-export-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .drive-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.1), rgba(66, 133, 244, 0.05));
+            border: 1px solid rgba(66, 133, 244, 0.3);
+            border-radius: 16px;
+            color: rgba(66, 133, 244, 0.8);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .drive-btn:hover {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.2), rgba(66, 133, 244, 0.1));
+            border-color: rgba(66, 133, 244, 0.5);
+            color: #4285F4;
+        }
+
+        .add-arc-btn svg, .import-export-btn svg, .drive-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .arc-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
+        }
+
+        .arc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--chakra-orange), var(--chakra-yellow), var(--chakra-orange));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .arc-card:hover::before {
+            opacity: 1;
+        }
+
+        .arc-card:hover {
+            border-color: rgba(255, 107, 53, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 107, 53, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .arc-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px) brightness(0.3);
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .arc-card:hover .arc-cover {
+            opacity: 0.8;
+        }
+
+        .arc-header {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .arc-toggle {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--chakra-orange);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .arc-toggle.rotated {
+            transform: rotate(90deg);
+            background: var(--chakra-orange);
+            color: #000;
+        }
+
+        .arc-info {
+            flex: 1;
+        }
+
+        .arc-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arc-title-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: inherit;
+            width: 100%;
+            outline: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .arc-title-input:focus {
+            border-bottom-color: var(--chakra-orange);
+        }
+
+        .arc-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .arc-progress {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--chakra-orange), var(--chakra-yellow));
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+        }
+
+        .arc-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 107, 53, 0.15);
+            border-color: rgba(255, 107, 53, 0.4);
+            color: var(--chakra-orange);
+        }
+
+        .icon-btn.delete:hover {
+            background: rgba(139, 0, 0, 0.2);
+            border-color: rgba(139, 0, 0, 0.4);
+            color: #ff4444;
+        }
+
+        .arc-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .arc-content.open {
+            max-height: 5000px;
+            padding: 0 24px 24px;
+        }
+
+        .content-section {
+            margin-bottom: 24px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .view-toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .view-toggle-btn.active {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 215, 0, 0.1));
+            border-color: var(--chakra-orange);
+            color: var(--chakra-orange);
+        }
+
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 8px;
+        }
+
+        .episode-btn {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .episode-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.3), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+            z-index: 1;
+        }
+
+        .episode-btn:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .episode-btn:hover {
+            border-color: rgba(255, 107, 53, 0.4);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .episode-btn.watched {
+            background: rgba(255, 107, 53, 0.15);
+            border-color: var(--chakra-orange);
+            color: var(--chakra-yellow);
+            box-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
+        }
+
+        .episode-btn.excellent {
+            animation: goldFlame 2s ease-in-out infinite alternate;
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 15px rgba(255, 215, 0, 0.1);
+        }
+
+        .episode-btn.bad {
+            animation: redFlame 2s ease-in-out infinite alternate;
+            border-color: #ff3333;
+            box-shadow: 0 0 20px rgba(255, 50, 50, 0.4), inset 0 0 10px rgba(255, 50, 50, 0.1);
+        }
+
+        @keyframes goldFlame {
+            0% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), inset 0 0 5px rgba(255, 215, 0, 0.05); }
+            100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 15px rgba(255, 215, 0, 0.15); }
+        }
+
+        @keyframes redFlame {
+            0% { box-shadow: 0 0 15px rgba(255, 50, 50, 0.3), inset 0 0 5px rgba(255, 50, 50, 0.05); }
+            100% { box-shadow: 0 0 30px rgba(255, 50, 50, 0.6), inset 0 0 15px rgba(255, 50, 50, 0.15); }
+        }
+
+        .text-episodes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .text-episodes-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .text-episodes-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 3px;
+        }
+
+        .text-episodes-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 53, 0.3);
+            border-radius: 3px;
+        }
+
+        .text-episode-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .text-episode-item.watched {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.08), rgba(255, 215, 0, 0.03));
+            border-color: rgba(255, 107, 53, 0.2);
+        }
+
+        .text-episode-item.excellent {
+            animation: goldFlameItem 2s ease-in-out infinite alternate;
+            border-color: #ffd700;
+        }
+
+        .text-episode-item.bad {
+            animation: redFlameItem 2s ease-in-out infinite alternate;
+            border-color: #ff3333;
+        }
+
+        @keyframes goldFlameItem {
+            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.2); }
+            100% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); }
+        }
+
+        @keyframes redFlameItem {
+            0% { box-shadow: 0 0 10px rgba(255, 50, 50, 0.2); }
+            100% { box-shadow: 0 0 25px rgba(255, 50, 50, 0.5); }
+        }
+
+        .text-ep-number {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--chakra-orange);
+            min-width: 40px;
+            text-align: center;
+            background: rgba(255, 107, 53, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .text-ep-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 4px 0;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .text-ep-input:focus {
+            border-bottom-color: var(--chakra-orange);
+        }
+
+        .ep-date-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 6px 10px;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: inherit;
+            font-size: 0.8rem;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ep-date-input:focus {
+            border-color: var(--chakra-orange);
+        }
+
+        .text-ep-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .rating-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .rating-btn.gold {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .rating-btn.gold.active {
+            background: rgba(255, 215, 0, 0.25);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .rating-btn.red {
+            border-color: #ff4444;
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        .rating-btn.red.active {
+            background: rgba(255, 68, 68, 0.25);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+        }
+
+        .rating-btn.watch {
+            border-color: rgba(255, 107, 53, 0.3);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .rating-btn.watch.active {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--chakra-orange);
+            border-color: var(--chakra-orange);
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 16px;
+        }
+
+        .character-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--chakra-orange), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .character-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 107, 53, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .character-card:hover::before {
+            opacity: 1;
+        }
+
+        .character-portrait {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .character-card:hover .character-portrait {
+            border-color: var(--chakra-orange);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
+        }
+
+        .death-icon {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 22px;
+            height: 22px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .character-name-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .character-name-input:focus {
+            border-bottom-color: var(--chakra-orange);
+        }
+
+        .character-delete {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(139, 0, 0, 0.3);
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.7rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .character-card:hover .character-delete {
+            opacity: 1;
+        }
+
+        .add-character-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: rgba(255, 255, 255, 0.3);
+            min-height: 150px;
+        }
+
+        .add-character-btn:hover {
+            border-color: rgba(255, 107, 53, 0.3);
+            color: var(--chakra-orange);
+            background: rgba(255, 107, 53, 0.03);
+        }
+
+        .add-character-btn svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .file-input-hidden {
+            display: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 53, 0.3);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .arc-header {
+                flex-wrap: wrap;
+            }
+            .arc-progress {
+                width: 100%;
+                margin-top: 10px;
+            }
+            .progress-bar {
+                flex: 1;
+            }
+            .characters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .text-episode-item {
+                flex-wrap: wrap;
+            }
+            .text-ep-actions {
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 8px;
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .konoha-symbol {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        [data-tooltip] {
+            position: relative;
+        }
+
+        [data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-4px);
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-tooltip]:hover::after {
+            opacity: 1;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .modal-textarea {
+            width: 100%;
+            min-height: 200px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            resize: vertical;
+            outline: none;
+            margin-bottom: 16px;
+        }
+
+        .modal-textarea:focus {
+            border-color: var(--chakra-orange);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .modal-btn.primary {
+            background: linear-gradient(135deg, var(--chakra-orange), var(--chakra-yellow));
+            color: #000;
+        }
+
+        .modal-btn.primary:hover {
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .modal-btn.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .file-import-label {
+            display: block;
+            padding: 40px;
+            border: 2px dashed rgba(255, 107, 53, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .file-import-label:hover {
+            border-color: var(--chakra-orange);
+            background: rgba(255, 107, 53, 0.05);
+            color: var(--chakra-orange);
+        }
+
+        .import-file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .arc-edit-modal .modal {
+            max-width: 450px;
+        }
+
+        .arc-edit-cover-preview {
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .arc-edit-cover-preview:hover {
+            border-color: var(--chakra-orange);
+            background: rgba(255, 107, 53, 0.03);
+            color: var(--chakra-orange);
+        }
+
+        .arc-edit-cover-preview.has-image {
+            border-style: solid;
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .arc-edit-cover-preview img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(8px) brightness(0.5);
+        }
+
+        .arc-edit-cover-preview span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .arc-edit-section {
+            margin-bottom: 20px;
+        }
+
+        .arc-edit-section-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .char-modal .modal {
+            max-width: 400px;
+        }
+
+        .char-modal-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .char-modal-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .char-modal-name-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            margin-bottom: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .char-modal-name-input:focus {
+            border-color: var(--chakra-orange);
+        }
+
+        .death-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .death-checkbox input {
+            display: none;
+        }
+
+        .death-checkbox-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .death-checkbox input:checked + .death-checkbox-icon {
+            background: rgba(139, 0, 0, 0.3);
+            border-color: rgba(255, 50, 50, 0.5);
+            color: #ff4444;
+        }
+
+        .death-checkbox-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .episode-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .control-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s;
+            width: 120px;
+        }
+
+        .control-input:focus {
+            border-color: var(--chakra-orange);
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.1);
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 215, 0, 0.1));
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 10px;
+            padding: 10px 18px;
+            color: var(--chakra-orange);
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .control-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(255, 215, 0, 0.2));
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* ============================================
+           СТИЛИ ДЛЯ ОПЕНИНГОВ/ЭНДИНГОВ
+           ============================================ */
+        .openings-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .opening-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .opening-item:hover {
+            border-color: rgba(255, 107, 53, 0.2);
+            background: rgba(255, 107, 53, 0.05);
+            transform: translateX(4px);
+        }
+
+        .opening-item.active {
+            border-color: var(--chakra-orange);
+            background: rgba(255, 107, 53, 0.1);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.1);
+        }
+
+        .opening-type-badge {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--chakra-orange);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            flex-shrink: 0;
+        }
+
+        .opening-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .opening-name {
+            color: #e0e0e0;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .opening-item:hover .opening-name {
+            color: var(--chakra-yellow);
+        }
+
+        .opening-item.active .opening-name {
+            color: var(--chakra-orange);
+        }
+
+        .opening-play-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .opening-item:hover .opening-play-icon {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: var(--chakra-orange);
+            color: var(--chakra-orange);
+        }
+
+        .opening-delete {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(139, 0, 0, 0.4);
+            border: 1px solid rgba(139, 0, 0, 0.6);
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            z-index: 2;
+        }
+
+        .opening-item:hover .opening-delete {
+            opacity: 1;
+        }
+
+        .opening-delete:hover {
+            background: rgba(200, 0, 0, 0.8);
+            color: #fff;
+        }
+
+        /* Встроенный плеер в карточке арки */
+        .inline-player {
+            margin-top: 12px;
+            margin-bottom: 16px;
+            position: relative;
+            width: 100%;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .inline-player-inner {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+        }
+
+        .inline-player-inner iframe,
+        .inline-player-inner #youtube-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-player-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .close-player-btn:hover {
+            background: rgba(200, 0, 0, 0.8);
+            border-color: #ff4444;
+        }
+
+        .add-opening-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px dashed rgba(255, 107, 53, 0.3);
+            border-radius: 10px;
+            color: rgba(255, 107, 53, 0.6);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .add-opening-btn:hover {
+            background: rgba(255, 107, 53, 0.05);
+            border-color: var(--chakra-orange);
+            color: var(--chakra-orange);
+        }
+
+        .drive-modal .modal {
+            max-width: 450px;
+        }
+
+        .drive-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            margin-bottom: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .drive-input:focus {
+            border-color: var(--chakra-orange);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-layer"></div>
+    <div class="particles" id="particles"></div>
+    <svg class="konoha-symbol" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M50 5 L50 95 M50 5 L20 35 M50 5 L80 35 M20 35 L20 75 L50 95 L80 75 L80 35"/>
+        <circle cx="50" cy="55" r="15"/>
+        <path d="M50 40 L50 70 M35 55 L65 55"/>
+    </svg>
+
+    <header>
+        <div class="header-glow"></div>
+        <div class="logo-container">
+            <h1 class="logo-text">NARUTO</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="totalArcs">0</div>
+                <div class="stat-label">Арки</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalEpisodes">0</div>
+                <div class="stat-label">Серии</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="watchedEpisodes">0</div>
+                <div class="stat-label">Просмотрено</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalCharacters">0</div>
+                <div class="stat-label">Персонажи</div>
+            </div>
+        </div>
+
+        <div class="actions-row">
+            <button class="add-arc-btn" onclick="addArc()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 5v14M5 12h14"/>
+                </svg>
+                Добавить новую арку
+            </button>
+            <button class="import-export-btn" onclick="exportToFile()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                Экспорт
+            </button>
+            <button class="import-export-btn" onclick="openImportModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                </svg>
+                Импорт
+            </button>
+            <button class="drive-btn" onclick="openDriveModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                </svg>
+                Google Диск
+            </button>
+        </div>
+
+        <div id="arcsContainer"></div>
+    </div>
+
+    <!-- Модальное окно экспорта -->
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal">
+            <div class="modal-title">Экспорт данных</div>
+            <textarea class="modal-textarea" id="exportTextarea" readonly></textarea>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal('exportModal')">Закрыть</button>
+                <button class="modal-btn primary" onclick="copyExport()">Копировать</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно импорта -->
+    <div class="modal-overlay" id="importModal">
+        <div class="modal">
+            <div class="modal-title">Импорт данных</div>
+            <label class="file-import-label" for="importFileInput">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin: 0 auto 12px; display: block;">
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 15V3"/>
+                </svg>
+                <div>Нажмите, чтобы выбрать JSON-файл</div>
+                <div style="font-size: 0.8rem; margin-top: 8px; opacity: 0.5;">или перетащите файл сюда</div>
+                <input type="file" id="importFileInput" class="import-file-input" accept=".json,application/json" onchange="importFromFile(this)">
+            </label>
+            <textarea class="modal-textarea" id="importTextarea" placeholder="Или вставьте JSON-данные сюда..."></textarea>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal('importModal')">Отмена</button>
+                <button class="modal-btn primary" onclick="importFromText()">Импортировать</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно редактирования арки -->
+    <div class="modal-overlay arc-edit-modal" id="arcEditModal">
+        <div class="modal">
+            <div class="modal-title">Редактировать арку</div>
+            <div class="arc-edit-section">
+                <div class="arc-edit-section-label">Обложка арки</div>
+                <label class="arc-edit-cover-preview" id="arcEditCoverPreview" onclick="document.getElementById('arcEditCoverInput').click()">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Нажмите, чтобы загрузить обложку</span>
+                </label>
+                <input type="file" id="arcEditCoverInput" class="file-input-hidden" accept="image/*" onchange="handleArcCoverUpload(this)">
+            </div>
+            <div class="arc-edit-section">
+                <div class="arc-edit-section-label">Добавить серии</div>
+                <div class="episode-controls" style="margin-bottom: 0;">
+                    <input type="number" class="control-input" id="arcEditEpStart" placeholder="От" min="1">
+                    <input type="number" class="control-input" id="arcEditEpEnd" placeholder="До" min="1">
+                    <button class="control-btn" onclick="addEpisodesFromEdit()">Добавить</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal('arcEditModal')">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно добавления персонажа -->
+    <div class="modal-overlay char-modal" id="charModal">
+        <div class="modal">
+            <div class="modal-title">Добавить персонажа</div>
+            <div class="char-modal-preview" id="charModalPreview" onclick="document.getElementById('charModalFile').click()">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+            </div>
+            <input type="file" id="charModalFile" class="file-input-hidden" accept="image/*" onchange="handleCharModalImage(this)">
+            <input type="text" class="char-modal-name-input" id="charModalName" placeholder="Имя персонажа">
+            <label class="death-checkbox">
+                <input type="checkbox" id="charModalDead">
+                <span class="death-checkbox-icon">💀</span>
+                <span class="death-checkbox-text">Персонаж погиб</span>
+            </label>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal('charModal')">Отмена</button>
+                <button class="modal-btn primary" onclick="saveCharacterFromModal()">Добавить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно добавления опенинга/эндинга -->
+    <div class="modal-overlay" id="openingModal">
+        <div class="modal">
+            <div class="modal-title">Добавить опенинг/эндинг</div>
+            <div style="margin-bottom: 16px;">
+                <select id="openingType" style="width:100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 12px 16px; color: #fff; font-family: inherit; font-size: 0.95rem; outline: none; margin-bottom: 12px;">
+                    <option value="opening" style="background:#1a1a1a;">Опенинг</option>
+                    <option value="ending" style="background:#1a1a1a;">Эндинг</option>
+                </select>
+                <input type="text" id="openingName" class="char-modal-name-input" placeholder="Название" style="margin-bottom: 12px;">
+                <input type="text" id="openingUrl" class="char-modal-name-input" placeholder="Ссылка на YouTube (watch?v= или youtu.be)" style="margin-bottom: 0;">
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal('openingModal')">Отмена</button>
+                <button class="modal-btn primary" onclick="saveOpeningFromModal()">Добавить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно Google Диск -->
+    <div class="modal-overlay drive-modal" id="driveModal">
+        <div class="modal">
+            <div class="modal-title">Google Диск</div>
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-bottom: 16px;">
+                Для сохранения: скачайте файл экспорта и загрузите его вручную в папку Google Диска.
+                <br><br>
+                <a href="https://drive.google.com/drive/folders/1CajJ1njr64bh5gqebakVvbSshB1JEVLH?usp=sharing" target="_blank" style="color: var(--chakra-orange); text-decoration: none; font-weight: 600;">
+                    📁 Открыть папку на Google Диске
+                </a>
+                <br><br>
+                Для загрузки из Google Диска: откройте файл на Диске, нажмите "Скачать" и импортируйте его через кнопку "Импорт".
+                <br><br>
+                Или вставьте прямую ссылку на JSON-файл:
+            </p>
+            <input type="text" class="drive-input" id="driveFileUrl" placeholder="https://drive.google.com/uc?export=download&id=...">
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal('driveModal')">Закрыть</button>
+                <button class="modal-btn primary" onclick="loadFromDriveUrl()">Загрузить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Загрузка YouTube IFrame Player API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        // ============================================
+        // YOUTUBE IFrame Player API — глобальный плеер
+        // ============================================
+        let ytPlayer = null;
+        let currentPlayingOpeningId = null;
+        let currentPlayingArcId = null;
+        let playerContainerId = null;
+
+        // Эта функция вызывается автоматически, когда API загружен
+        function onYouTubeIframeAPIReady() {
+            console.log('YouTube IFrame Player API готов');
+            // Плеер будет создан при первом воспроизведении
+        }
+
+        function createYTPlayer(containerId, videoId) {
+            // Уничтожаем предыдущий плеер, если есть
+            if (ytPlayer) {
+                try {
+                    ytPlayer.destroy();
+                } catch(e) {}
+                ytPlayer = null;
+            }
+
+            playerContainerId = containerId;
+
+            ytPlayer = new YT.Player(containerId, {
+                videoId: videoId,
+                playerVars: {
+                    autoplay: 1,
+                    origin: window.location.origin,
+                    enablejsapi: 1,
+                    modestbranding: 1,
+                    rel: 0
+                },
+                events: {
+                    onReady: function(event) {
+                        event.target.playVideo();
+                    },
+                    onError: function(event) {
+                        console.error('Ошибка плеера:', event.data);
+                    }
+                }
+            });
+        }
+
+        function destroyYTPlayer() {
+            if (ytPlayer) {
+                try {
+                    ytPlayer.stopVideo();
+                    ytPlayer.destroy();
+                } catch(e) {}
+                ytPlayer = null;
+            }
+            playerContainerId = null;
+            currentPlayingOpeningId = null;
+            currentPlayingArcId = null;
+        }
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // ============================================
+        // INDEXEDDB
+        // ============================================
+        const DB_NAME = 'NarutoTrackerDB';
+        const DB_VERSION = 1;
+        const STORE_IMAGES = 'images';
+        let db = null;
+
+        function openDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => {
+                    db = request.result;
+                    resolve(db);
+                };
+                request.onupgradeneeded = (event) => {
+                    const database = event.target.result;
+                    if (!database.objectStoreNames.contains(STORE_IMAGES)) {
+                        database.createObjectStore(STORE_IMAGES, { keyPath: 'id' });
+                    }
+                };
+            });
+        }
+
+        async function saveImageToDB(id, dataUrl) {
+            if (!db) await openDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_IMAGES, 'readwrite');
+                const store = tx.objectStore(STORE_IMAGES);
+                const request = store.put({ id, data: dataUrl });
+                request.onsuccess = () => resolve();
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function getImageFromDB(id) {
+            if (!db) await openDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_IMAGES, 'readonly');
+                const store = tx.objectStore(STORE_IMAGES);
+                const request = store.get(id);
+                request.onsuccess = () => resolve(request.result ? request.result.data : null);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function deleteImageFromDB(id) {
+            if (!db) await openDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(STORE_IMAGES, 'readwrite');
+                const store = tx.objectStore(STORE_IMAGES);
+                const request = store.delete(id);
+                request.onsuccess = () => resolve();
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        // ============================================
+        // СОСТОЯНИЕ ПРИЛОЖЕНИЯ
+        // ============================================
+        let arcs = [];
+        let arcIdCounter = 1;
+        let currentEditingArcId = null;
+        let currentCharArcId = null;
+        let currentOpeningArcId = null;
+
+        const icons = {
+            chevron: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>`,
+            trash: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>`,
+            pencil: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
+            plus: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>`,
+            play: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`,
+            pause: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`
+        };
+
+        async function init() {
+            await openDB();
+            const saved = localStorage.getItem('narutoArcs');
+            if (saved) {
+                arcs = JSON.parse(saved);
+                for (const arc of arcs) {
+                    if (arc.coverImageId) {
+                        arc.coverImage = await getImageFromDB(arc.coverImageId) || '';
+                    }
+                    for (const char of arc.characters) {
+                        if (char.imageId) {
+                            char.image = await getImageFromDB(char.imageId) || '';
+                        }
+                    }
+                    if (!arc.openings) arc.openings = [];
+                    arc.openings.forEach(op => {
+                        if (!op.id) op.id = Date.now();
+                    });
+                }
+            }
+            arcIdCounter = arcs.length > 0 ? Math.max(...arcs.map(a => a.id)) + 1 : 1;
+            renderArcs();
+            updateStats();
+        }
+
+        async function saveData() {
+            const dataToSave = arcs.map(arc => ({
+                ...arc,
+                coverImage: '',
+                characters: arc.characters.map(char => ({
+                    ...char,
+                    image: ''
+                }))
+            }));
+            localStorage.setItem('narutoArcs', JSON.stringify(dataToSave));
+            updateStats();
+        }
+
+        function updateStats() {
+            const totalArcs = arcs.length;
+            let totalEpisodes = 0;
+            let watchedEpisodes = 0;
+            let totalCharacters = 0;
+            arcs.forEach(arc => {
+                totalEpisodes += arc.episodes.length;
+                watchedEpisodes += arc.episodes.filter(e => e.watched).length;
+                totalCharacters += arc.characters.length;
+            });
+            document.getElementById('totalArcs').textContent = totalArcs;
+            document.getElementById('totalEpisodes').textContent = totalEpisodes;
+            document.getElementById('watchedEpisodes').textContent = watchedEpisodes;
+            document.getElementById('totalCharacters').textContent = totalCharacters;
+        }
+
+        function addArc() {
+            const newArc = {
+                id: arcIdCounter++,
+                title: `Арка ${arcs.length + 1}`,
+                coverImage: '',
+                coverImageId: '',
+                episodes: [],
+                characters: [],
+                openings: [],
+                isOpen: true,
+                viewMode: 'numeric'
+            };
+            arcs.push(newArc);
+            saveData();
+            renderArcs();
+        }
+
+        async function deleteArc(id) {
+            if (!confirm('Удалить эту арку?')) return;
+            const arc = arcs.find(a => a.id === id);
+            if (arc) {
+                if (arc.coverImageId) await deleteImageFromDB(arc.coverImageId);
+                for (const char of arc.characters) {
+                    if (char.imageId) await deleteImageFromDB(char.imageId);
+                }
+            }
+            // Уничтожаем плеер, если он был в этой арке
+            if (currentPlayingArcId === id) {
+                destroyYTPlayer();
+            }
+            arcs = arcs.filter(a => a.id !== id);
+            saveData();
+            renderArcs();
+        }
+
+        function toggleArc(id) {
+            const arc = arcs.find(a => a.id === id);
+            if (arc) {
+                arc.isOpen = !arc.isOpen;
+                // Если закрываем арку с активным плеером — уничтожаем
+                if (!arc.isOpen && currentPlayingArcId === id) {
+                    destroyYTPlayer();
+                }
+                saveData();
+                renderArcs();
+            }
+        }
+
+        function updateArcTitle(id, title) {
+            const arc = arcs.find(a => a.id === id);
+            if (arc) {
+                arc.title = title;
+                saveData();
+            }
+        }
+
+        function setViewMode(arcId, mode) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc) {
+                arc.viewMode = mode;
+                saveData();
+                renderArcs();
+            }
+        }
+
+        function addEpisodes(arcId, start, end) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (!arc) return;
+            const startNum = parseInt(start);
+            const endNum = parseInt(end);
+            if (isNaN(startNum) || isNaN(endNum) || startNum > endNum) return;
+            for (let i = startNum; i <= endNum; i++) {
+                if (!arc.episodes.some(e => e.number === i)) {
+                    arc.episodes.push({ 
+                        number: i, 
+                        watched: false, 
+                        title: `Серия ${i}`,
+                        rating: null,
+                        watchDate: ''
+                    });
+                }
+            }
+            arc.episodes.sort((a, b) => a.number - b.number);
+            saveData();
+            renderArcs();
+        }
+
+        function removeEpisode(arcId, episodeNumber) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc) {
+                arc.episodes = arc.episodes.filter(e => e.number !== episodeNumber);
+                saveData();
+                renderArcs();
+            }
+        }
+
+        function toggleEpisode(arcId, episodeNumber) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc) {
+                const ep = arc.episodes.find(e => e.number === episodeNumber);
+                if (ep) {
+                    ep.watched = !ep.watched;
+                    if (!ep.watched) {
+                        ep.rating = null;
+                        ep.watchDate = '';
+                    }
+                    saveData();
+                    renderArcContent(arcId);
+                    updateStats();
+                }
+            }
+        }
+
+        function setEpisodeRating(arcId, episodeNumber, rating) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc) {
+                const ep = arc.episodes.find(e => e.number === episodeNumber);
+                if (ep) {
+                    if (ep.rating === rating) {
+                        ep.rating = null;
+                    } else {
+                        ep.rating = rating;
+                        ep.watched = true;
+                    }
+                    saveData();
+                    renderArcContent(arcId);
+                    updateStats();
+                }
+            }
+        }
+
+        function updateEpisodeTitle(arcId, episodeNumber, title) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc) {
+                const ep = arc.episodes.find(e => e.number === episodeNumber);
+                if (ep) {
+                    ep.title = title;
+                    saveData();
+                }
+            }
+        }
+
+        function updateEpisodeDate(arcId, episodeNumber, date) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc) {
+                const ep = arc.episodes.find(e => e.number === episodeNumber);
+                if (ep) {
+                    ep.watchDate = date;
+                    saveData();
+                }
+            }
+        }
+
+        function renderArcContent(arcId) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (!arc) return;
+            const arcContent = document.querySelector(`.arc-content[data-arc-id="${arcId}"]`);
+            if (!arcContent) return;
+            const textList = arcContent.querySelector('.text-episodes-list');
+            const scrollTop = textList ? textList.scrollTop : 0;
+            arcContent.innerHTML = generateArcContent(arc);
+            setTimeout(() => {
+                const newList = arcContent.querySelector('.text-episodes-list');
+                if (newList) {
+                    newList.scrollTop = scrollTop;
+                }
+                // Восстанавливаем плеер, если он был
+                if (currentPlayingArcId === arcId && currentPlayingOpeningId) {
+                    restorePlayerAfterRerender(arcId, currentPlayingOpeningId);
+                }
+            }, 100);
+        }
+
+        function restorePlayerAfterRerender(arcId, openingId) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (!arc) return;
+            const opening = (arc.openings || []).find(op => op.id === openingId);
+            if (!opening) return;
+            const videoId = extractYouTubeId(opening.url);
+            if (!videoId) return;
+            const containerId = `yt-player-${arcId}-${openingId}`;
+            const container = document.getElementById(containerId);
+            if (container) {
+                createYTPlayer(containerId, videoId);
+            }
+        }
+
+        function generateArcContent(arc) {
+            const isPlayerActive = currentPlayingArcId === arc.id && currentPlayingOpeningId !== null;
+            const activeOpening = isPlayerActive ? (arc.openings || []).find(op => op.id === currentPlayingOpeningId) : null;
+
+            return `
+                <!-- Серии -->
+                <div class="content-section">
+                    <div class="section-label">Серии</div>
+                    <div class="view-toggle" onclick="event.stopPropagation()">
+                        <button class="view-toggle-btn ${arc.viewMode !== 'text' ? 'active' : ''}" 
+                                onclick="setViewMode(${arc.id}, 'numeric')" title="Числовой вид">Ч</button>
+                        <button class="view-toggle-btn ${arc.viewMode === 'text' ? 'active' : ''}" 
+                                onclick="setViewMode(${arc.id}, 'text')" title="Текстовый вид">Т</button>
+                    </div>
+                    ${arc.viewMode === 'text' ? `
+                        <div class="text-episodes-list">
+                            ${arc.episodes.map(ep => `
+                                <div class="text-episode-item ${ep.watched ? 'watched' : ''} ${ep.rating === 'excellent' ? 'excellent' : ''} ${ep.rating === 'bad' ? 'bad' : ''}">
+                                    <div class="text-ep-number">${ep.number}</div>
+                                    <input type="text" class="text-ep-input" value="${ep.title || `Серия ${ep.number}`}" onchange="updateEpisodeTitle(${arc.id}, ${ep.number}, this.value)" placeholder="Название серии">
+                                    <input type="date" class="ep-date-input" value="${ep.watchDate || ''}" onchange="updateEpisodeDate(${arc.id}, ${ep.number}, this.value)" title="Дата просмотра">
+                                    <div class="text-ep-actions">
+                                        <button class="rating-btn watch ${ep.watched ? 'active' : ''}" onclick="toggleEpisode(${arc.id}, ${ep.number})" title="Просмотрено">✓</button>
+                                        <button class="rating-btn gold ${ep.rating === 'excellent' ? 'active' : ''}" onclick="setEpisodeRating(${arc.id}, ${ep.number}, 'excellent')" title="Отличная">★</button>
+                                        <button class="rating-btn red ${ep.rating === 'bad' ? 'active' : ''}" onclick="setEpisodeRating(${arc.id}, ${ep.number}, 'bad')" title="Плохая">✕</button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : `
+                        <div class="episodes-grid">
+                            ${arc.episodes.map(ep => `
+                                <button class="episode-btn ${ep.watched ? 'watched' : ''} ${ep.rating === 'excellent' ? 'excellent' : ''} ${ep.rating === 'bad' ? 'bad' : ''}" 
+                                        onclick="toggleEpisode(${arc.id}, ${ep.number})"
+                                        oncontextmenu="event.preventDefault(); removeEpisode(${arc.id}, ${ep.number})"
+                                        data-tooltip="ПКМ — удалить">${ep.number}</button>
+                            `).join('')}
+                        </div>
+                    `}
+                </div>
+
+                <!-- Персонажи -->
+                <div class="content-section">
+                    <div class="section-label">Персонажи</div>
+                    <div class="characters-grid">
+                        ${arc.characters.map(char => `
+                            <div class="character-card">
+                                <button class="character-delete" onclick="deleteCharacter(${arc.id}, ${char.id})">×</button>
+                                <div style="position:relative;">
+                                    <img src="${char.image || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23333%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2230%22>?</text></svg>'}" 
+                                         class="character-portrait" alt="${char.name}"
+                                         onclick="document.getElementById('file-${arc.id}-${char.id}').click()">
+                                    ${char.isDead ? `<div class="death-icon" title="Погиб">💀</div>` : ''}
+                                </div>
+                                <input type="file" id="file-${arc.id}-${char.id}" class="file-input-hidden" accept="image/*" onchange="handleImageUpload(${arc.id}, ${char.id}, this.files[0])">
+                                <input type="text" class="character-name-input" value="${char.name}" onchange="updateCharacter(${arc.id}, ${char.id}, 'name', this.value)" placeholder="Имя">
+                            </div>
+                        `).join('')}
+                        <button class="add-character-btn" onclick="event.stopPropagation(); openCharModal(${arc.id})">
+                            ${icons.plus}
+                            <span style="font-size: 0.85rem;">Добавить персонажа</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Опенинги и Эндинги -->
+                <div class="content-section">
+                    <div class="section-label">Опенинги и Эндинги</div>
+                    <div class="openings-list">
+                        ${(arc.openings || []).map(op => `
+                            <div class="opening-item ${(currentPlayingOpeningId === op.id) ? 'active' : ''}" 
+                                 onclick="event.stopPropagation(); toggleOpeningPlay(${arc.id}, ${op.id}, '${op.url.replace(/'/g, "\\'")}')">
+                                <span class="opening-type-badge">${op.type === 'opening' ? 'OP' : 'ED'}</span>
+                                <div class="opening-info">
+                                    <div class="opening-name">${op.name}</div>
+                                </div>
+                                <div class="opening-play-icon">
+                                    ${currentPlayingOpeningId === op.id ? icons.pause : icons.play}
+                                </div>
+                                <button class="opening-delete" onclick="event.stopPropagation(); deleteOpening(${arc.id}, ${op.id})" title="Удалить">×</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <!-- Встроенный плеер (показывается только когда активно видео) -->
+                    ${isPlayerActive && activeOpening ? `
+                        <div class="inline-player" id="inline-player-${arc.id}">
+                            <button class="close-player-btn" onclick="event.stopPropagation(); closeInlinePlayer()">✕</button>
+                            <div class="inline-player-inner">
+                                <div id="yt-player-${arc.id}-${activeOpening.id}"></div>
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <button class="add-opening-btn" onclick="event.stopPropagation(); openOpeningModal(${arc.id})">
+                        ${icons.plus}
+                        Добавить опенинг/эндинг
+                    </button>
+                </div>
+            `;
+        }
+
+        // ============================================
+        // УПРАВЛЕНИЕ ВСТРОЕННЫМ ПЛЕЕРОМ
+        // ============================================
+        function toggleOpeningPlay(arcId, openingId, url) {
+            if (currentPlayingOpeningId === openingId && currentPlayingArcId === arcId) {
+                // Останавливаем плеер
+                destroyYTPlayer();
+                renderArcs();
+                return;
+            }
+
+            // Останавливаем предыдущий плеер
+            destroyYTPlayer();
+
+            const videoId = extractYouTubeId(url);
+            if (!videoId) {
+                alert('Не удалось извлечь ID видео из ссылки');
+                return;
+            }
+
+            currentPlayingArcId = arcId;
+            currentPlayingOpeningId = openingId;
+
+            // Перерисовываем арки, чтобы показать плеер
+            renderArcs();
+
+            // Даём время на рендеринг, затем создаём плеер
+            setTimeout(() => {
+                const containerId = `yt-player-${arcId}-${openingId}`;
+                if (document.getElementById(containerId)) {
+                    createYTPlayer(containerId, videoId);
+                }
+            }, 200);
+        }
+
+        function closeInlinePlayer() {
+            destroyYTPlayer();
+            renderArcs();
+        }
+
+        function extractYouTubeId(url) {
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\?\/]+)/,
+                /^([a-zA-Z0-9_-]{11})$/
+            ];
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match) return match[1];
+            }
+            return null;
+        }
+
+        // ============================================
+        // ПЕРСОНАЖИ
+        // ============================================
+        function openCharModal(arcId) {
+            currentCharArcId = arcId;
+            document.getElementById('charModalName').value = '';
+            document.getElementById('charModalDead').checked = false;
+            document.getElementById('charModalPreview').innerHTML = `
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+            `;
+            document.getElementById('charModalPreview').classList.remove('has-image');
+            document.getElementById('charModalPreview').dataset.imageData = '';
+            document.getElementById('charModal').classList.add('active');
+        }
+
+        function handleCharModalImage(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('charModalPreview');
+                preview.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;">`;
+                preview.classList.add('has-image');
+                preview.dataset.imageData = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            input.value = '';
+        }
+
+        async function saveCharacterFromModal() {
+            if (!currentCharArcId) return;
+            const arc = arcs.find(a => a.id === currentCharArcId);
+            if (!arc) return;
+            const name = document.getElementById('charModalName').value.trim() || 'Без имени';
+            const isDead = document.getElementById('charModalDead').checked;
+            const preview = document.getElementById('charModalPreview');
+            const imageData = preview.dataset.imageData || '';
+            const charId = Date.now();
+            const imageId = imageData ? `char-img-${charId}` : '';
+            if (imageData) {
+                await saveImageToDB(imageId, imageData);
+            }
+            arc.characters.push({
+                id: charId,
+                name: name,
+                image: imageData,
+                imageId: imageId,
+                isDead: isDead
+            });
+            saveData();
+            renderArcs();
+            closeModal('charModal');
+        }
+
+        async function deleteCharacter(arcId, charId) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc) {
+                const char = arc.characters.find(c => c.id === charId);
+                if (char && char.imageId) {
+                    await deleteImageFromDB(char.imageId);
+                }
+                arc.characters = arc.characters.filter(c => c.id !== charId);
+                saveData();
+                renderArcs();
+            }
+        }
+
+        function updateCharacter(arcId, charId, field, value) {
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc) {
+                const char = arc.characters.find(c => c.id === charId);
+                if (char) {
+                    char[field] = value;
+                    saveData();
+                }
+            }
+        }
+
+        async function handleImageUpload(arcId, charId, file) {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                const arc = arcs.find(a => a.id === arcId);
+                if (!arc) return;
+                const char = arc.characters.find(c => c.id === charId);
+                if (!char) return;
+                if (char.imageId) await deleteImageFromDB(char.imageId);
+                const newImageId = `char-img-${charId}-${Date.now()}`;
+                await saveImageToDB(newImageId, e.target.result);
+                char.image = e.target.result;
+                char.imageId = newImageId;
+                saveData();
+                renderArcs();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ============================================
+        // РЕДАКТИРОВАНИЕ АРКИ
+        // ============================================
+        function openArcEditModal(arcId) {
+            currentEditingArcId = arcId;
+            const arc = arcs.find(a => a.id === arcId);
+            if (!arc) return;
+            const preview = document.getElementById('arcEditCoverPreview');
+            if (arc.coverImage) {
+                preview.innerHTML = `<img src="${arc.coverImage}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;filter:blur(8px) brightness(0.5);"><span style="position:relative;z-index:1;">Нажмите, чтобы изменить обложку</span>`;
+                preview.classList.add('has-image');
+            } else {
+                preview.innerHTML = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Нажмите, чтобы загрузить обложку</span>`;
+                preview.classList.remove('has-image');
+            }
+            document.getElementById('arcEditEpStart').value = '';
+            document.getElementById('arcEditEpEnd').value = '';
+            document.getElementById('arcEditModal').classList.add('active');
+        }
+
+        async function handleArcCoverUpload(input) {
+            const file = input.files[0];
+            if (!file || !currentEditingArcId) return;
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                const arc = arcs.find(a => a.id === currentEditingArcId);
+                if (!arc) return;
+                if (arc.coverImageId) await deleteImageFromDB(arc.coverImageId);
+                const newImageId = `arc-cover-${arc.id}-${Date.now()}`;
+                await saveImageToDB(newImageId, e.target.result);
+                arc.coverImage = e.target.result;
+                arc.coverImageId = newImageId;
+                saveData();
+                const preview = document.getElementById('arcEditCoverPreview');
+                preview.innerHTML = `<img src="${e.target.result}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;filter:blur(8px) brightness(0.5);"><span style="position:relative;z-index:1;">Нажмите, чтобы изменить обложку</span>`;
+                preview.classList.add('has-image');
+                renderArcs();
+            };
+            reader.readAsDataURL(file);
+            input.value = '';
+        }
+
+        function addEpisodesFromEdit() {
+            if (!currentEditingArcId) return;
+            const start = document.getElementById('arcEditEpStart').value;
+            const end = document.getElementById('arcEditEpEnd').value;
+            addEpisodes(currentEditingArcId, start, end);
+            document.getElementById('arcEditEpStart').value = '';
+            document.getElementById('arcEditEpEnd').value = '';
+        }
+
+        // ============================================
+        // ОПЕНИНГИ / ЭНДИНГИ
+        // ============================================
+        function openOpeningModal(arcId) {
+            currentOpeningArcId = arcId;
+            document.getElementById('openingType').value = 'opening';
+            document.getElementById('openingName').value = '';
+            document.getElementById('openingUrl').value = '';
+            document.getElementById('openingModal').classList.add('active');
+        }
+
+        function saveOpeningFromModal() {
+            if (!currentOpeningArcId) return;
+            const arc = arcs.find(a => a.id === currentOpeningArcId);
+            if (!arc) return;
+            const type = document.getElementById('openingType').value;
+            const name = document.getElementById('openingName').value.trim();
+            const url = document.getElementById('openingUrl').value.trim();
+            if (!name || !url) {
+                alert('Заполните название и ссылку');
+                return;
+            }
+            const videoId = extractYouTubeId(url);
+            if (!videoId) {
+                alert('Введите корректную ссылку на YouTube (watch?v=... или youtu.be/...)');
+                return;
+            }
+            if (!arc.openings) arc.openings = [];
+            arc.openings.push({
+                id: Date.now(),
+                type: type,
+                name: name,
+                url: url
+            });
+            saveData();
+            renderArcs();
+            closeModal('openingModal');
+        }
+
+        function deleteOpening(arcId, openingId) {
+            // Если удаляем активный опенинг — останавливаем плеер
+            if (currentPlayingOpeningId === openingId && currentPlayingArcId === arcId) {
+                destroyYTPlayer();
+            }
+            const arc = arcs.find(a => a.id === arcId);
+            if (arc && arc.openings) {
+                arc.openings = arc.openings.filter(op => op.id !== openingId);
+                saveData();
+                renderArcs();
+            }
+        }
+
+        // ============================================
+        // GOOGLE ДИСК
+        // ============================================
+        function openDriveModal() {
+            document.getElementById('driveFileUrl').value = '';
+            document.getElementById('driveModal').classList.add('active');
+        }
+
+        function loadFromDriveUrl() {
+            const url = document.getElementById('driveFileUrl').value.trim();
+            if (!url) {
+                alert('Вставьте ссылку на файл');
+                return;
+            }
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Не удалось загрузить файл');
+                    return response.json();
+                })
+                .then(data => {
+                    processImport(data);
+                    closeModal('driveModal');
+                })
+                .catch(err => {
+                    alert('Ошибка загрузки: ' + err.message + '\n\nУбедитесь, что ссылка прямая (начинается с https://drive.google.com/uc?export=download&id=...) и файл доступен для скачивания.');
+                });
+        }
+
+        // ============================================
+        // ЭКСПОРТ
+        // ============================================
+        function exportToFile() {
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const dateStr = `${day}.${month}.${year}_${hours}.${minutes}`;
+            
+            const data = JSON.stringify(arcs, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `naruto-tracker-${dateStr}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // ============================================
+        // ИМПОРТ
+        // ============================================
+        function openImportModal() {
+            document.getElementById('importTextarea').value = '';
+            document.getElementById('importFileInput').value = '';
+            document.getElementById('importModal').classList.add('active');
+        }
+
+        function importFromFile(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    processImport(data);
+                } catch (err) {
+                    alert('Ошибка чтения файла: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+            input.value = '';
+        }
+
+        function importFromText() {
+            const text = document.getElementById('importTextarea').value.trim();
+            if (!text) {
+                alert('Вставьте данные для импорта');
+                return;
+            }
+            try {
+                const data = JSON.parse(text);
+                processImport(data);
+            } catch (err) {
+                alert('Ошибка: ' + err.message);
+            }
+        }
+
+        async function processImport(data) {
+            if (!Array.isArray(data)) {
+                alert('Неверный формат данных: ожидался массив арок');
+                return;
+            }
+            if (!confirm(`Импортировать ${data.length} арок? Текущие данные будут заменены.`)) {
+                return;
+            }
+            destroyYTPlayer();
+            if (db) {
+                const tx = db.transaction(STORE_IMAGES, 'readwrite');
+                const store = tx.objectStore(STORE_IMAGES);
+                await store.clear();
+            }
+            arcs = data;
+            arcIdCounter = arcs.length > 0 ? Math.max(...arcs.map(a => a.id || 0)) + 1 : 1;
+            arcs.forEach(arc => {
+                if (!arc.viewMode) arc.viewMode = 'numeric';
+                if (arc.coverImage === undefined) arc.coverImage = '';
+                if (arc.coverImageId === undefined) arc.coverImageId = '';
+                if (!arc.openings) arc.openings = [];
+                arc.episodes.forEach(ep => {
+                    if (ep.watched === undefined) ep.watched = false;
+                    if (ep.rating === undefined) ep.rating = null;
+                    if (!ep.title) ep.title = `Серия ${ep.number}`;
+                    if (ep.watchDate === undefined) ep.watchDate = '';
+                });
+                arc.characters.forEach(char => {
+                    if (char.isDead === undefined) char.isDead = false;
+                    if (char.imageId === undefined) char.imageId = '';
+                });
+                arc.openings.forEach(op => {
+                    if (!op.id) op.id = Date.now();
+                });
+            });
+            for (const arc of arcs) {
+                if (arc.coverImage && arc.coverImage.startsWith('data:')) {
+                    const imgId = arc.coverImageId || `arc-cover-${arc.id}-${Date.now()}`;
+                    await saveImageToDB(imgId, arc.coverImage);
+                    arc.coverImageId = imgId;
+                }
+                for (const char of arc.characters) {
+                    if (char.image && char.image.startsWith('data:')) {
+                        const imgId = char.imageId || `char-img-${char.id}-${Date.now()}`;
+                        await saveImageToDB(imgId, char.image);
+                        char.imageId = imgId;
+                    }
+                }
+            }
+            await saveData();
+            renderArcs();
+            closeModal('importModal');
+            alert('Импорт завершён успешно!');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            if (modalId === 'arcEditModal') currentEditingArcId = null;
+            if (modalId === 'charModal') currentCharArcId = null;
+            if (modalId === 'openingModal') currentOpeningArcId = null;
+        }
+
+        function copyExport() {
+            const textarea = document.getElementById('exportTextarea');
+            textarea.select();
+            document.execCommand('copy');
+            alert('Данные скопированы в буфер обмена!');
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    currentEditingArcId = null;
+                    currentCharArcId = null;
+                    currentOpeningArcId = null;
+                }
+            });
+        });
+
+        const importLabel = document.querySelector('.file-import-label');
+        if (importLabel) {
+            importLabel.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                importLabel.style.borderColor = 'var(--chakra-orange)';
+                importLabel.style.background = 'rgba(255, 107, 53, 0.05)';
+            });
+            importLabel.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                importLabel.style.borderColor = '';
+                importLabel.style.background = '';
+            });
+            importLabel.addEventListener('drop', (e) => {
+                e.preventDefault();
+                importLabel.style.borderColor = '';
+                importLabel.style.background = '';
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.name.endsWith('.json') || file.type === 'application/json') {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            try {
+                                const data = JSON.parse(event.target.result);
+                                processImport(data);
+                            } catch (err) {
+                                alert('Ошибка чтения файла: ' + err.message);
+                            }
+                        };
+                        reader.readAsText(file);
+                    } else {
+                        alert('Пожалуйста, выберите JSON-файл');
+                    }
+                }
+            });
+        }
+
+        function renderArcs() {
+            const container = document.getElementById('arcsContainer');
+            if (arcs.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <p>Нет добавленных арок</p>
+                        <p style="font-size: 0.85rem; margin-top: 8px;">Нажмите кнопку выше, чтобы начать</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = arcs.map(arc => {
+                const watchedCount = arc.episodes.filter(e => e.watched).length;
+                const totalCount = arc.episodes.length;
+                const progressPercent = totalCount > 0 ? (watchedCount / totalCount) * 100 : 0;
+
+                return `
+                    <div class="arc-card">
+                        ${arc.coverImage ? `<div class="arc-cover" style="background-image: url('${arc.coverImage}')"></div>` : ''}
+                        <div class="arc-header" onclick="toggleArc(${arc.id})">
+                            <div class="arc-toggle ${arc.isOpen ? 'rotated' : ''}">${icons.chevron}</div>
+                            <div class="arc-info">
+                                <div class="arc-title">
+                                    <input type="text" class="arc-title-input" value="${arc.title}" onclick="event.stopPropagation()" onchange="updateArcTitle(${arc.id}, this.value)" placeholder="Название арки">
+                                </div>
+                                <div class="arc-meta">
+                                    <span>${totalCount} серий</span><span>•</span>
+                                    <span>${arc.characters.length} персонажей</span><span>•</span>
+                                    <span>${(arc.openings || []).length} OP/ED</span>
+                                </div>
+                            </div>
+                            <div class="arc-progress" onclick="event.stopPropagation()">
+                                <div class="progress-bar"><div class="progress-fill" style="width: ${progressPercent}%"></div></div>
+                                <span style="font-size: 0.85rem; color: var(--chakra-orange); font-weight: 600; min-width: 45px;">${watchedCount}/${totalCount}</span>
+                            </div>
+                            <div class="arc-actions" onclick="event.stopPropagation()">
+                                <button class="icon-btn" onclick="openArcEditModal(${arc.id})" data-tooltip="Редактировать">${icons.pencil}</button>
+                                <button class="icon-btn delete" onclick="deleteArc(${arc.id})" data-tooltip="Удалить арку">${icons.trash}</button>
+                            </div>
+                        </div>
+                        <div class="arc-content ${arc.isOpen ? 'open' : ''}" data-arc-id="${arc.id}">
+                            ${arc.isOpen ? generateArcContent(arc) : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        init();
+    </script>
+</body>
+</html>
